@@ -12,6 +12,8 @@
 */
 
 Route::get('/', function () {
+    $data = \Illuminate\Support\Facades\DB::table('users')->get();
+    dd($data);
     return 'Hello';
 });
 
