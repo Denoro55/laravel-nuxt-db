@@ -44,6 +44,9 @@ Route::group(['middleware' => 'jwt.auth'], function() {
     Route::post('/message/sendMessage','MessageController@sendMessage');
     Route::post('/message/getMessages','MessageController@getMessages');
     Route::post('/message/getUserMessages','MessageController@getUserMessages');
+
+    Route::post('/articles', 'ArticleController@index');
+    Route::post('/comments', 'CommentController@index');
 });
 
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
