@@ -18,6 +18,4 @@ Route::get('/', function () {
 
 //Auth::routes();
 
-Route::post('/api/user', 'api\UserController@index')->name('user.index');
-
 //Route::post('/api/articles/create', 'api\ArticleController@store')->name('articles.store');
