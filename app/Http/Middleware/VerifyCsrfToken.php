@@ -19,9 +19,9 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'http://laravel-auth/api/articles',
-        'http://laravel-auth/api/comments',
-        'http://laravel-auth/api/user',
-        'http://laravel-auth/api/message'
+        'https://nuxt-app-db.herokuapp.com/api/articles',
+        'https://nuxt-app-db.herokuapp.com/api/comments',
+        'https://nuxt-app-db.herokuapp.com/api/user',
+        'https://nuxt-app-db.herokuapp.com/api/message'
     ];
 }
