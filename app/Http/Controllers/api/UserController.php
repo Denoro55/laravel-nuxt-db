@@ -61,12 +61,6 @@ class UserController extends Controller
     }
 
     public function confirmFriend(Request $request) {
-//        DB::table('user_friends')
-//            ->where('id', $request->user_id)
-//            ->update(['status' => 2]);
-//        DB::table('user_friends')
-//            ->where('id', $request->friend_id)
-//            ->update(['status' => 2]);
         DB::table('user_friends')
             ->whereIn('user_id', [$request->user_id, $request->friend_id])
             ->update(['status' => 3]);
