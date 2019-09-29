@@ -19,6 +19,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
 
+//    const SITE_IP = 'http://laravel-auth';
     const SITE_IP = 'http://188.225.75.245';
 
     protected $except = [

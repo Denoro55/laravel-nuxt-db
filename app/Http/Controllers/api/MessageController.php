@@ -36,12 +36,32 @@ class MessageController extends Controller
                 group by chat_id
               ) r
             on m.id = r.latest and m.chat_id = r.chat_id
-            where (m.companion_id = {$request->user_id}) OR (m.user_id = {$request->user_id})"
+            where (m.companion_id = {$request->user_id}) OR (m.user_id = {$request->user_id}) order by m.updated_at DESC"
         ));
         return $messages;
     }
 
     public function getUserMessages(Request $request) {
+
+//        $companionExists = DB::table('users')->where('id', $request->companion_id)->exists();
+//        if (!$companionExists) {
+//            return [
+//                'success' => false
+//            ];
+//        }
+
+        $isFriend = DB::table('user_friends')
+            ->where('user_id', $request->user_id)
+            ->where('friend_id', $request->companion_id)
+            ->where('status', 3)
+            ->count();
+
+        if (!$isFriend) {
+            return [
+                'success' => false
+            ];
+        }
+
         $messages = DB::select(DB::raw(
             "SELECT m.text, u.name, u.image_url, u.id as idd
              FROM messages m
@@ -49,6 +69,10 @@ class MessageController extends Controller
              WHERE (m.companion_id = {$request->user_id} AND m.user_id = {$request->companion_id})
              OR (m.companion_id = {$request->companion_id} AND m.user_id = {$request->user_id}) order by m.updated_at DESC"
         ));
-        return $messages;
+
+        return [
+            'success' => true,
+            'messages' => $messages
+        ];
     }
 }
