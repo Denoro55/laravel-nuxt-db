@@ -19,9 +19,9 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'https://nuxt-app-db.herokuapp.com/api/articles',
-        'https://nuxt-app-db.herokuapp.com/api/comments',
-        'https://nuxt-app-db.herokuapp.com/api/user',
-        'https://nuxt-app-db.herokuapp.com/api/message'
+        'http://188.225.75.245/api/articles',
+        'http://188.225.75.245/api/comments',
+        'http://188.225.75.245/api/user',
+        'http://188.225.75.245/api/message'
     ];
 }
