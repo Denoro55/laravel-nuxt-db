@@ -18,10 +18,13 @@ class VerifyCsrfToken extends Middleware
      *
      * @var array
      */
+
+    const SITE_IP = 'http://188.225.75.245';
+
     protected $except = [
-        'http://188.225.75.245/api/articles',
-        'http://188.225.75.245/api/comments',
-        'http://188.225.75.245/api/user',
-        'http://188.225.75.245/api/message'
+        SITE_IP.'/api/articles',
+        SITE_IP.'/api/comments',
+        SITE_IP.'/api/user',
+        SITE_IP.'/api/message'
     ];
 }

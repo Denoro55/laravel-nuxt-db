@@ -44,7 +44,7 @@ class UserController extends Controller
 
     public function getFriends(Request $request) {
         $data = DB::select(DB::raw(
-            "SELECT u.name, u.image_url, u.status, u.id
+            "SELECT u.name, u.image_url, u.status, u.id, u.bg_url
             from user_friends uf
             left join users u on uf.friend_id = u.id 
             WHERE uf.user_id = {$request->user_id} AND uf.status = 3"));
@@ -94,10 +94,16 @@ class UserController extends Controller
     public function updateAvatar(Request $request) {
         $user = DB::table('users')->select('name')->where('id', $request->user_id)->first();
         $file = $request->file('file')->store("uploads/{$user->name}", 'public');
-        DB::table('users')
-            ->where('id', $request->user_id)
-            ->update(['image_url' => $file]);
-        return $file;
+        if ($request->upload_type == 1) {
+            DB::table('users')
+                ->where('id', $request->user_id)
+                ->update(['image_url' => $file]);
+        } else {
+            DB::table('users')
+                ->where('id', $request->user_id)
+                ->update(['bg_url' => $file]);
+        }
+        return ['file' => $file, 'type' => $request->upload_type];
 //        return $request->file->getClientMimeType();
 //        $content = Storage::disk('csv')->get('file.csv');
     }

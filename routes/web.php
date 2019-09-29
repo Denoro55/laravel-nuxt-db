@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    $data = \Illuminate\Support\Facades\DB::table('users')->get();
-    return $data;
-});
+// Route::get('/', function () {
+//     // $data = \Illuminate\Support\Facades\DB::table('users')->get();
+//     // return $data;
+// });
 
 //Auth::routes();
 
